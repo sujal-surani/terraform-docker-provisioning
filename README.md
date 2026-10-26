@@ -18,14 +18,14 @@ Instead of a single `main.tf`, the configuration is modularized within a dedicat
 ## Execution Workflow
 The following steps were executed to manage the infrastructure:
 
-0. **Navigation:** Ran `cd terraform` to enter the configuration directory before executing any Terraform commands.
-1. **Initialization:** Ran `terraform init` to initialize the backend and download the necessary Docker provider plugins.
-2. **Planning & Debugging:** Ran `terraform plan` to preview changes. Resolved initial syntax deprecations (updating `.latest` to `.image_id` and `port` to `ports`) to ensure a clean execution plan.
-3. **Provisioning:** Ran `terraform apply` to create the resources. Terraform successfully pulled the Nginx image and spun up the container in under 25 seconds.
-4. **Verification:** 
+1. **Navigation:** Ran `cd terraform` to enter the configuration directory before executing any Terraform commands.
+2. **Initialization:** Ran `terraform init` to initialize the backend and download the necessary Docker provider plugins.
+3. **Planning & Debugging:** Ran `terraform plan` to preview changes. Resolved initial syntax deprecations (updating `.latest` to `.image_id` and `port` to `ports`) to ensure a clean execution plan.
+4. **Provisioning:** Ran `terraform apply` to create the resources. Terraform successfully pulled the Nginx image and spun up the container in under 25 seconds.
+5. **Verification:** 
    * `terraform state list` confirmed Terraform was tracking `docker_container.nginx_container` and `docker_image.nginx`.
    * `docker ps` and `docker images` were used to manually verify the Nginx container was actively running and the image was stored locally.
-5. **Teardown:** Ran `terraform destroy` to tear down the container and remove the image, returning the local environment to its original state cleanly.
+6. **Teardown:** Ran `terraform destroy` to tear down the container and remove the image, returning the local environment to its original state cleanly.
 
 ## Key Learnings
 * **IaC (Infrastructure as Code):** Managing infrastructure through machine-readable configuration files.
